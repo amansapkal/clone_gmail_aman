@@ -1,0 +1,39 @@
+.emailrow {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid whitesmoke;
+  height: 50px;
+  cursor: pointer;
+}
+.email_message{
+    flex: 0.7;
+   
+}
+.email_message > h4{
+    width:400px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.email_message > h4 >span{
+   color: grey;
+   font-weight: 300;
+}
+
+.email_title{
+    flex:0.2;
+}
+
+.emailrow:hover{
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-top: 1px solid whitesmoke;
+}
+
+.email_icons {
+  display: flex;
+  align-items: center;
+}
+
+.email_time{
+  
+}

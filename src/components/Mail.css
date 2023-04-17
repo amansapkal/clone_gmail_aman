@@ -1,0 +1,57 @@
+.mail {
+  box-sizing: content-box;
+  height: 100vh;
+  flex: 1;
+  /* is flex ka matlab abhi bacha hua sab lele width  */
+  background-color: whitesmoke;
+}
+
+.mail_tools {
+  display: flex;
+  background-color: white;
+  justify-content: space-between;
+}
+
+.email_body {
+  background-color: white;
+
+  height: 82%;
+  padding: 20px;
+  margin: 20px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.email_header {
+  margin: 10px 20px;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.email_header > h2 {
+  flex: 0.1;
+}
+.email_header > p {
+  flex: 0.1;
+}
+
+.email_message {
+  margin-top: 20px;
+}
+.email_message > p {
+  padding: 10px;
+  overflow-wrap: break-word;
+}
+
+.labelicon {
+  color: #e8ab02 !important;
+  flex:0.1;
+}
+
+.email_body > .email_time{
+    position: absolute;
+    top:5px;
+    right:5px;
+    color:grey;
+
+}
