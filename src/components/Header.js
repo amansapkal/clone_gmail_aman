@@ -1,14 +1,27 @@
 import React from "react";
 import "./Header.css";
 import MenuIcon from "@mui/icons-material/Menu";
-import {  IconButton } from "@mui/material";
+import {  Avatar, IconButton } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import AppsIcon from "@mui/icons-material/Apps";
 import NotificationsIcon from "@mui/icons-material/Notifications";
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+// import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import { useDispatch, useSelector } from "react-redux";
+import { SelectUserStatus, logout } from "../features/userSlice";
+import { auth } from "../firebase";
 
 const Header = () => {
+    
+  const user = useSelector(SelectUserStatus);
+ const dispatch = useDispatch();
+
+   const signOut = ()=>{
+       auth.signOut().then(()=>{
+        dispatch(logout(null))
+       })
+   }
+
   return (
     <div className="header">
       <div className="header__left">
@@ -38,8 +51,8 @@ const Header = () => {
         <IconButton>
           <NotificationsIcon />
         </IconButton>
-        <IconButton>
-        <AccountCircleIcon   />
+        <IconButton onClick={signOut}>
+        <Avatar alt="Remy Sharp" src={user.photoUrl}  />
         </IconButton>        
       </div>
     </div>

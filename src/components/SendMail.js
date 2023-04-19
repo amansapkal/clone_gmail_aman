@@ -5,6 +5,8 @@ import "./SendMail.css";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import {ClosesendMessageIsOpen} from '../features/mailSlice'
+import { db } from "../firebase.js";
+import firebase from 'firebase/compat/app';
 
 const SendMail = () => {
   const dispatch = useDispatch();
@@ -12,7 +14,15 @@ const SendMail = () => {
   const { register, handleSubmit,   formState: { errors }} = useForm();
 
   const onSubmit = (formData) =>{
-    console.log(formData);
+    console.log(formData);  
+    db.collection('emails').add({
+       to : formData.to,
+       subject : formData.subject,
+       message : formData.message,
+       timestamp : firebase.firestore.FieldValue.serverTimestamp()
+    });
+
+    dispatch(ClosesendMessageIsOpen());
   }
 
   const handleClick = ()=>{

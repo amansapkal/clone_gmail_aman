@@ -1,3 +1,5 @@
+
+
 .emailrow {
   display: flex;
   align-items: center;
@@ -5,23 +7,26 @@
   height: 50px;
   cursor: pointer;
 }
-.email_message{
+
+.emailrow > .email_message{
+  display: flex;
+  align-items: center;
     flex: 0.7;
    
 }
-.email_message > h4{
+.emailrow > .email_message > h4{
     width:400px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
-.email_message > h4 >span{
+.emailrow > .email_message > h4 >span{
    color: grey;
    font-weight: 300;
 }
 
 .email_title{
-    flex:0.2;
+    flex:0.3;
 }
 
 .emailrow:hover{
@@ -34,6 +39,6 @@
   align-items: center;
 }
 
-.email_time{
-  
+.emailrow > .email_time{
+  font-size:small;
 }

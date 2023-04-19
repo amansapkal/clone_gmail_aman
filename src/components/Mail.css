@@ -29,16 +29,18 @@
 }
 
 .email_header > h2 {
-  flex: 0.1;
+  flex: 0.3 1;
+  white-space: nowrap;
 }
 .email_header > p {
-  flex: 0.1;
+  flex: 0.4 1;
+  white-space: nowrap;
 }
 
-.email_message {
+.email_body > .email_message {
   margin-top: 20px;
 }
-.email_message > p {
+.email_body > .email_message > p {
   padding: 10px;
   overflow-wrap: break-word;
 }
@@ -53,5 +55,8 @@
     top:5px;
     right:5px;
     color:grey;
+   
 
 }
+
+ 

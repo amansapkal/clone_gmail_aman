@@ -2,7 +2,14 @@
     overflow: scroll;
     width: 100vw;
 }
-
+.emailList {
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+  }
+  .emailList::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
+  }
+  
 .emailList_settings{
     display: flex;
     justify-content: space-between;
@@ -18,4 +25,5 @@
 .section_buttons{
     display: flex;
     border-bottom: 1px solid whitesmoke;
+    
 }

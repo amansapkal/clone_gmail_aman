@@ -1,0 +1,19 @@
+.login{
+    border:1px solid red;
+    height: 100vh;
+    display:grid;
+    place-items: center;
+}
+
+.login_components{
+    min-height: 20vh;
+    display:flex;
+    flex-direction: column;
+    width:17%;
+}
+
+
+.login_components > img{
+    margin:auto;
+    
+}

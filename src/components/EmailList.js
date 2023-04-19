@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect ,useState} from 'react'
 import './EmailList.css'
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import { IconButton } from '@mui/material';
@@ -14,8 +14,28 @@ import MailIcon from '@mui/icons-material/Mail';
 import GroupIcon from '@mui/icons-material/Group';
 import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 import EmailRow from './EmailRow';
+import {db} from '../firebase'
+ 
+const EmailList = () => {
+  
+    const   [emails, setEmails] = useState([]);
 
-const EmailList = () => (
+
+      useEffect(  () => {
+         db.collection('emails')
+       .orderBy('timestamp','desc')
+        .onSnapshot((snapshot) =>{
+            setEmails(
+              snapshot.docs.map((doc) =>({
+                id: doc.id,
+                data : doc.data()
+              }
+              ))
+            )
+        })
+     }, [])
+     
+    return (
     <div className='emailList'>
         <div className="emailList_settings">
             <div className="left_settings">
@@ -63,38 +83,31 @@ const EmailList = () => (
         </div>
  
         <div className="email_list">
-            <EmailRow title={"CodeStudio"} subject={'Weekend Contest 69!!!'} description={'Ready to take your coding to next levelLorem ipsum, dolor sit amet consectetur adipisicing elit. Vel molestias adipisci odit omnis deserunt maiores.'} time={"10 Apr"}/>
-            <EmailRow title={"CodeStudio"} subject={'Weekend Contest 69!!!'} description={'Ready to take your coding to next level'} time={"10 Apr"}/>
-            <EmailRow title={"CodeStudio"} subject={'Weekend Contest 69!!!'} description={'Ready to take your coding to next level'} time={"10 Apr"}/>
-            <EmailRow title={"CodeStudio"} subject={'Weekend Contest 69!!!'} description={'Ready to take your coding to next level'} time={"10 Apr"}/>
-            <EmailRow title={"CodeStudio"} subject={'Weekend Contest 69!!!'} description={'Ready to take your coding to next level'} time={"10 Apr"}/>
-            <EmailRow title={"CodeStudio"} subject={'Weekend Contest 69!!!'} description={'Ready to take your coding to next level'} time={"10 Apr"}/>
-            <EmailRow title={"CodeStudio"} subject={'Weekend Contest 69!!!'} description={'Ready to take your coding to next level'} time={"10 Apr"}/>
-            <EmailRow title={"CodeStudio"} subject={'Weekend Contest 69!!!'} description={'Ready to take your coding to next level'} time={"10 Apr"}/>
-            <EmailRow title={"CodeStudio"} subject={'Weekend Contest 69!!!'} description={'Ready to take your coding to next level'} time={"10 Apr"}/>
-            <EmailRow title={"CodeStudio"} subject={'Weekend Contest 69!!!'} description={'Ready to take your coding to next level'} time={"10 Apr"}/>
-            <EmailRow title={"CodeStudio"} subject={'Weekend Contest 69!!!'} description={'Ready to take your coding to next level'} time={"10 Apr"}/>
-            <EmailRow title={"CodeStudio"} subject={'Weekend Contest 69!!!'} description={'Ready to take your coding to next level'} time={"10 Apr"}/>
-            <EmailRow title={"CodeStudio"} subject={'Weekend Contest 69!!!'} description={'Ready to take your coding to next level'} time={"10 Apr"}/>
-            <EmailRow title={"CodeStudio"} subject={'Weekend Contest 69!!!'} description={'Ready to take your coding to next level'} time={"10 Apr"}/>
-            <EmailRow title={"CodeStudio"} subject={'Weekend Contest 69!!!'} description={'Ready to take your coding to next level'} time={"10 Apr"}/>
-            <EmailRow title={"CodeStudio"} subject={'Weekend Contest 69!!!'} description={'Ready to take your coding to next level'} time={"10 Apr"}/>
-            <EmailRow title={"CodeStudio"} subject={'Weekend Contest 69!!!'} description={'Ready to take your coding to next level'} time={"10 Apr"}/>
-            <EmailRow title={"CodeStudio"} subject={'Weekend Contest 69!!!'} description={'Ready to take your coding to next level'} time={"10 Apr"}/>
-            <EmailRow title={"CodeStudio"} subject={'Weekend Contest 69!!!'} description={'Ready to take your coding to next level'} time={"10 Apr"}/>
-            <EmailRow title={"CodeStudio"} subject={'Weekend Contest 69!!!'} description={'Ready to take your coding to next level'} time={"10 Apr"}/>
-            <EmailRow title={"CodeStudio"} subject={'Weekend Contest 69!!!'} description={'Ready to take your coding to next level'} time={"10 Apr"}/>
-            <EmailRow title={"CodeStudio"} subject={'Weekend Contest 69!!!'} description={'Ready to take your coding to next level'} time={"10 Apr"}/>
-            <EmailRow title={"CodeStudio"} subject={'Weekend Contest 69!!!'} description={'Ready to take your coding to next level'} time={"10 Apr"}/>
-            <EmailRow title={"CodeStudio"} subject={'Weekend Contest 69!!!'} description={'Ready to take your coding to next level'} time={"10 Apr"}/>
-            <EmailRow title={"CodeStudio"} subject={'Weekend Contest 69!!!'} description={'Ready to take your coding to next level'} time={"10 Apr"}/>
-            <EmailRow title={"CodeStudio"} subject={'Weekend Contest 69!!!'} description={'Ready to take your coding to next level'} time={"10 Apr"}/>
-            <EmailRow title={"CodeStudio"} subject={'Weekend Contest 69!!!'} description={'Ready to take your coding to next level'} time={"10 Apr"}/>
-            <EmailRow title={"CodeStudio"} subject={'Weekend Contest 69!!!'} description={'Ready to take your coding to next level'} time={"10 Apr"}/>
-            <EmailRow title={"CodeStudio"} subject={'Weekend Contest 69!!!'} description={'Ready to take your coding to next level'} time={"10 Apr"}/>
+            {
+                emails.map(({id,data})=>(
+                    <EmailRow id={id} key={id} title={data.to} subject={data.subject} description={data.message} time={new Date(data.timestamp?.seconds*1000).toString()}/>
+                )
+                    
+                )
+            }
+             
+             <EmailRow id={1} title={'CodeStudio'} subject={"contest"} description={"attend the contest at night"} time={"10 Apr"}/>
+             <EmailRow id={1} title={'CodeStudio'} subject={"contest"} description={"attend the contest at night"} time={"10 Apr"}/>
+             <EmailRow id={1} title={'CodeStudio'} subject={"contest"} description={"attend the contest at night"} time={"10 Apr"}/>
+             <EmailRow id={1} title={'CodeStudio'} subject={"contest"} description={"attend the contest at night"} time={"10 Apr"}/>
+             <EmailRow id={1} title={'CodeStudio'} subject={"contest"} description={"attend the contest at night"} time={"10 Apr"}/>
+             <EmailRow id={1} title={'CodeStudio'} subject={"contest"} description={"attend the contest at night"} time={"10 Apr"}/>
+             <EmailRow id={1} title={'CodeStudio'} subject={"contest"} description={"attend the contest at night"} time={"10 Apr"}/>
+             <EmailRow id={1} title={'CodeStudio'} subject={"contest"} description={"attend the contest at night"} time={"10 Apr"}/>
+             <EmailRow id={1} title={'CodeStudio'} subject={"contest"} description={"attend the contest at night"} time={"10 Apr"}/>
+             <EmailRow id={1} title={'CodeStudio'} subject={"contest"} description={"attend the contest at night"} time={"10 Apr"}/>
+             <EmailRow id={1} title={'CodeStudio'} subject={"contest"} description={"attend the contest at night"} time={"10 Apr"}/>
+             <EmailRow id={1} title={'CodeStudio'} subject={"contest"} description={"attend the contest at night"} time={"10 Apr"}/>
+             <EmailRow id={1} title={'CodeStudio'} subject={"contest"} description={"attend the contest at night"} time={"10 Apr"}/>
+           
         </div>
 
     </div>
 )
-
+}
 export default EmailList
